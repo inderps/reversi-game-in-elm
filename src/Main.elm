@@ -6,6 +6,7 @@ import Model exposing (init)
 import Update exposing (update)
 import View exposing (view)
 
+main : Program Never
 main =
   App.beginnerProgram
     { model = init 0

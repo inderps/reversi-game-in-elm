@@ -10,6 +10,6 @@ view : Model -> Html Msg
 view model =
   div []
     [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (toString model) ]
+    , div [] [ text (toString model.counter) ]
     , button [ onClick Increment ] [ text "+" ]
     ]

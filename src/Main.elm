@@ -1,7 +1,14 @@
-module Reversi exposing (..)
+module ReversiApp exposing (..)
 
-import Html exposing (text)
+import Html.App as App
 
-main : Html.Html a
+import Model exposing (init)
+import Update exposing (update)
+import View exposing (view)
+
 main =
-    text "Hello Worsld"
+  App.beginnerProgram
+    { model = init 0
+    , update = update
+    , view = view
+    }

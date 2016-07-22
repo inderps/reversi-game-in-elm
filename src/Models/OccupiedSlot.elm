@@ -1,16 +1,18 @@
-module Models.OccupiedSlot exposing (OccupiedSlot, init)
-import Models.Player exposing (Player (..))
+module Models.OccupiedSlot exposing (OccupiedSlot, move)
+
+import Models.Player exposing (Player(..))
+
 
 type alias OccupiedSlot =
-  { x : Int
-  , y: Int
-  , player: Player
-  }
+    { x : Int
+    , y : Int
+    , player : Player
+    }
 
-init : Player -> Int -> Int -> OccupiedSlot
 
-init player x y =
-  { x = x
-  , y = y
-  , player = player
-  }
+move : Player -> Int -> Int -> OccupiedSlot
+move player x y =
+    { x = x
+    , y = y
+    , player = player
+    }

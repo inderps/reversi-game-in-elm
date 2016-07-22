@@ -1,5 +1,6 @@
 module Models.Player exposing (..)
 
+
 type Player
-  = Tom
-  | Jerry
+    = Tom
+    | Jerry

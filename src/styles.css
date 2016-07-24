@@ -24,6 +24,10 @@ body {
   padding: 0;
 }
 
+.tile.highlight {
+  background-color: #98afc7;
+}
+
 .tile:focus {
   outline: none;
 }

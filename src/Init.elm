@@ -21,4 +21,5 @@ init =
     { board = Models.Board.init 8 8
     , occupiedSlots = initialMoves
     , turn = Orange
+    , highlightedTile = Nothing
     }

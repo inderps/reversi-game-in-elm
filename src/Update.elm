@@ -2,12 +2,13 @@ module Update exposing (..)
 
 import Model exposing (Model)
 import Models.Position exposing (Position)
+import Updates.PlaceTile exposing (placeTile)
 import Updates.HighlightTile exposing (highlightTile)
 import Updates.RemoveHighlightTile exposing (removeHighlightTile)
 
 
 type Msg
-    = TakeTurn
+    = PlaceTile Position
     | HighlightTile Position
     | RemoveHighlightTile
 
@@ -15,8 +16,8 @@ type Msg
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        TakeTurn ->
-            model
+        PlaceTile position ->
+            placeTile model position
 
         HighlightTile position ->
             highlightTile model position

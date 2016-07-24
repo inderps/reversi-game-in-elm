@@ -40,6 +40,7 @@ body {
 
 .tile.highlight {
   background-color: #98afc7;
+  cursor: pointer;
 }
 
 .tile:focus {

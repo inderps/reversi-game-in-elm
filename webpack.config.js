@@ -21,16 +21,7 @@ var commonConfig = {
 
   module: {
     noParse: /\.elm$/,
-    loaders: [
-      {
-          test: /\.css$/,
-          loaders: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader',
-          ]
-        }
-    ]
+    loaders: []
   },
 
   plugins: [
@@ -63,6 +54,14 @@ if ( TARGET_ENV === 'development' ) {
           exclude: [/elm-stuff/, /node_modules/],
           loader:  'elm-hot!elm-webpack?verbose=true&warn=true'
         },
+        {
+          test: /\.css$/,
+          loaders: [
+            'style-loader',
+            'css-loader',
+            'postcss-loader',
+          ]
+        },
       ]
     }
 
@@ -82,6 +81,13 @@ if ( TARGET_ENV === 'production' ) {
           test:    /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
           loader:  'elm-webpack'
+        },
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract( 'style-loader', [
+            'css-loader',
+            'postcss-loader',
+          ])
         },
       ]
     },

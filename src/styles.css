@@ -35,10 +35,10 @@ body {
   border-radius: 100%;
 }
 
-.tile__disc.player-1 {
+.tile__disc.orange {
   background-color: #56bc8a;
 }
 
-.tile__disc.player-2 {
+.tile__disc.green {
   background-color: #d95e40;
 }

@@ -2,5 +2,5 @@ module Models.Player exposing (..)
 
 
 type Player
-    = Tom
-    | Jerry
+    = Orange
+    | Green

@@ -8,10 +8,10 @@ import Models.Player exposing (Player(..))
 
 initialMoves : List OccupiedSlot
 initialMoves =
-    [ move Tom 4 4
-    , move Jerry 5 4
-    , move Tom 5 5
-    , move Jerry 4 5
+    [ move Orange 4 4
+    , move Green 5 4
+    , move Orange 5 5
+    , move Green 4 5
     ]
 
 
@@ -19,5 +19,5 @@ init : Model
 init =
     { board = Models.Board.init 8 8
     , occupiedSlots = initialMoves
-    , turn = Tom
+    , turn = Orange
     }

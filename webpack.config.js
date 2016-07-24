@@ -2,6 +2,8 @@ var path              = require( 'path' );
 var webpack           = require( 'webpack' );
 var merge             = require( 'webpack-merge' );
 var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+var autoprefixer      = require( 'autoprefixer' );
+var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 var TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
 
@@ -19,7 +21,16 @@ var commonConfig = {
 
   module: {
     noParse: /\.elm$/,
-    loaders: []
+    loaders: [
+      {
+          test: /\.css$/,
+          loaders: [
+            'style-loader',
+            'css-loader',
+            'postcss-loader',
+          ]
+        }
+    ]
   },
 
   plugins: [
@@ -29,6 +40,7 @@ var commonConfig = {
       filename: 'index.html'
     })
   ],
+  postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
 }
 
 if ( TARGET_ENV === 'development' ) {
@@ -76,6 +88,7 @@ if ( TARGET_ENV === 'production' ) {
 
     plugins: [
       new webpack.optimize.OccurenceOrderPlugin(),
+      new ExtractTextPlugin( './[hash].css', { allChunks: true } ),
       new webpack.optimize.UglifyJsPlugin({
           minimize:   true,
           compressor: { warnings: false }

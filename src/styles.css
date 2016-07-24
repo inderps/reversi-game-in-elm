@@ -1,4 +1,5 @@
 body {
+  background-color: #7b838f;
 }
 
 .board {
@@ -17,8 +18,8 @@ body {
   height: 100%;
   width: 12.5%;
   background:none;
-  background-color: #11a722;
-  border: 1px solid #162512;
+  background-color: #33455b;
+  border: 1px solid #4aa8d8;
   box-sizing: border-box;
   padding: 0;
 }
@@ -30,7 +31,14 @@ body {
 .tile__disc {
   width: 80%;
   height: 80%;
-  background-color: yellow;
   margin: auto;
   border-radius: 100%;
+}
+
+.tile__disc.player-1 {
+  background-color: #56bc8a;
+}
+
+.tile__disc.player-2 {
+  background-color: #d95e40;
 }

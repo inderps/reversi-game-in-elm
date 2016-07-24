@@ -8,5 +8,5 @@ import Update exposing (Msg(..))
 
 disc : OccupiedSlot -> Html Msg
 disc occupiedSlot =
-    div [ class "tile__disc" ]
+    div [ class "tile__disc player-1" ]
         []

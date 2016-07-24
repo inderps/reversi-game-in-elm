@@ -2,9 +2,10 @@ module Views.Tile exposing (tiles)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, onMouseOver)
 import List exposing (head, filter, map)
 import Models.OccupiedSlot exposing (OccupiedSlot)
+import Models.Position exposing (Position, position)
 import Model exposing (Model)
 import Update exposing (Msg(..))
 import Views.Disc exposing (disc)
@@ -17,20 +18,25 @@ tiles y model =
 
 tile : List OccupiedSlot -> Int -> Int -> Html Msg
 tile occupiedSlots y x =
-    case maybeOccupied occupiedSlots x y of
+    tileWithPosition occupiedSlots (position x y)
+
+
+tileWithPosition : List OccupiedSlot -> Position -> Html Msg
+tileWithPosition occupiedSlots pos =
+    case maybeOccupied occupiedSlots pos of
         Just occupiedSlot ->
             button [ class "tile" ]
                 [ (disc occupiedSlot) ]
 
         Nothing ->
-            button [ class "tile", onClick TakeTurn ] []
+            button [ class "tile", onClick TakeTurn, onMouseOver (HighlightTile pos) ] []
 
 
-maybeOccupied : List OccupiedSlot -> Int -> Int -> Maybe OccupiedSlot
-maybeOccupied occupiedSlots x y =
-    head (filter (isSlotOccupied x y) occupiedSlots)
+maybeOccupied : List OccupiedSlot -> Position -> Maybe OccupiedSlot
+maybeOccupied occupiedSlots pos =
+    head (filter (isSlotOccupied pos) occupiedSlots)
 
 
-isSlotOccupied : Int -> Int -> OccupiedSlot -> Bool
-isSlotOccupied x y occupiedSlot =
-    .x occupiedSlot == x && .y occupiedSlot == y
+isSlotOccupied : Position -> OccupiedSlot -> Bool
+isSlotOccupied pos occupiedSlot =
+    .x occupiedSlot.position == .x pos && .y occupiedSlot.position == .y pos

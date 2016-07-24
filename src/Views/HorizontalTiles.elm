@@ -14,6 +14,6 @@ listOfHorizontalTiles model =
 
 
 horizontalTiles : Model -> Int -> Html Msg
-horizontalTiles model position =
+horizontalTiles model row =
     div [ class "board__row" ]
-        (tiles position model)
+        (tiles row model)

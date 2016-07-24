@@ -1,12 +1,26 @@
 body {
   background-color: #7b838f;
+  margin: 0;
+  padding: 0;
+}
+
+.game {
+  text-align: center;
+  margin: auto;
 }
 
 .board {
   margin: auto;
   text-align: center;
-  width: 30rem;
-  height: 30rem;
+  width: 90vw;
+  height: 90vw;
+}
+
+@media only screen and (min-width : 1000px) {
+  .board {
+    width: 40vw;
+    height: 40vw;
+  }
 }
 
 .board__row {

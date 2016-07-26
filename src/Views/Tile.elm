@@ -26,7 +26,7 @@ tileWithPosition model pos =
         Nothing ->
             button
                 [ class (maybeHighlightTile pos model.highlightedTile)
-                , onClick (PlaceTile pos)
+                , onClick (PlaceDisc pos)
                 , onMouseOver (HighlightTile pos)
                 , onMouseOut (RemoveHighlightTile)
                 ]

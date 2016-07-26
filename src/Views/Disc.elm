@@ -2,14 +2,14 @@ module Views.Disc exposing (disc)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Models.OccupiedSlot exposing (OccupiedSlot)
+import Models.OccupiedTile exposing (OccupiedTile)
 import Update exposing (Msg(..))
 import Models.Player exposing (Player(..))
 
 
-disc : OccupiedSlot -> Html Msg
-disc occupiedSlot =
-    case .player occupiedSlot of
+disc : OccupiedTile -> Html Msg
+disc occupiedTile =
+    case .player occupiedTile of
         Orange ->
             (orangeDisc)
 

@@ -2,24 +2,24 @@ module Updates.PlaceTile exposing (placeTile)
 
 import Model exposing (Model)
 import Models.Position exposing (Position)
-import Models.OccupiedSlot exposing (OccupiedSlot, move)
+import Models.OccupiedTile exposing (OccupiedTile, move)
 
 
 placeTile : Model -> Position -> Model
 placeTile model position =
-    updateTilesOnLeft (insertTile model position)
+    updateTiles (insertTile model position)
 
 
 insertTile : Model -> Position -> Model
 insertTile model pos =
-    { model | occupiedSlots = model.occupiedSlots ++ [ move model.turn pos ] }
+    { model | occupiedTiles = model.occupiedTiles ++ [ move model.turn pos ] }
 
 
-updateTilesOnLeft : Model -> Model
-updateTilesOnLeft model =
-    { model | occupiedSlots = [] }
+updateTiles : Model -> Model
+updateTiles model =
+    model
 
 
-flipDiscs : Model -> List Maybe OccupiedSlot -> Model
-flipDiscs model maybeOccupiedSlots =
+flipDiscs : Model -> List Maybe OccupiedTile -> Model
+flipDiscs model maybeOccupiedTiles =
     model

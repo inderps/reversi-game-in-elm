@@ -1,13 +1,13 @@
 module Init exposing (init)
 
 import Model exposing (Model)
-import Models.Board exposing (Board)
-import Models.OccupiedSlot exposing (OccupiedSlot, move)
+import Models.BoardSpecs exposing (BoardSpecs)
+import Models.OccupiedTile exposing (OccupiedTile, move)
 import Models.Player exposing (Player(..))
 import Models.Position exposing (position)
 
 
-initialMoves : List OccupiedSlot
+initialMoves : List OccupiedTile
 initialMoves =
     [ move Orange (position 4 4)
     , move Green (position 5 4)
@@ -18,8 +18,8 @@ initialMoves =
 
 init : Model
 init =
-    { board = Models.Board.init 8 8
-    , occupiedSlots = initialMoves
+    { boardSpecs = Models.BoardSpecs.init 8 8
+    , occupiedTiles = initialMoves
     , turn = Orange
     , highlightedTile = Nothing
     }

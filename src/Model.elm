@@ -1,14 +1,14 @@
 module Model exposing (Model)
 
-import Models.Board exposing (Board)
-import Models.OccupiedSlot exposing (OccupiedSlot)
+import Models.BoardSpecs exposing (BoardSpecs)
+import Models.OccupiedTile exposing (OccupiedTile)
 import Models.Turn exposing (Turn)
 import Models.Position exposing (Position)
 
 
 type alias Model =
-    { board : Board
-    , occupiedSlots : List OccupiedSlot
+    { boardSpecs : BoardSpecs
+    , occupiedTiles : List OccupiedTile
     , turn : Turn
     , highlightedTile : Maybe Position
     }

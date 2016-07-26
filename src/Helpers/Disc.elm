@@ -1,6 +1,6 @@
 module Helpers.Disc exposing (nextDiscToBePlaced)
 
-import List exposing (tail, reverse, head, map)
+import List exposing (tail, reverse, head)
 import Models.OccupiedTile exposing (OccupiedTile, move)
 import Models.Disc exposing (Disc(..))
 

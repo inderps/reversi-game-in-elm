@@ -1,17 +1,17 @@
 module Models.OccupiedTile exposing (OccupiedTile, move)
 
 import Models.Position exposing (Position, position)
-import Models.Player exposing (Player(..))
+import Models.Disc exposing (Disc(..))
 
 
 type alias OccupiedTile =
     { position : Position
-    , player : Player
+    , disc : Disc
     }
 
 
-move : Player -> Position -> OccupiedTile
-move player position =
+move : Disc -> Position -> OccupiedTile
+move disc position =
     { position = position
-    , player = player
+    , disc = disc
     }

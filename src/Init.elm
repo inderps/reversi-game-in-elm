@@ -3,7 +3,7 @@ module Init exposing (init)
 import Model exposing (Model)
 import Models.BoardSpecs exposing (BoardSpecs)
 import Models.OccupiedTile exposing (OccupiedTile, move)
-import Models.Player exposing (Player(..))
+import Models.Disc exposing (Disc(..))
 import Models.Position exposing (position)
 
 
@@ -20,6 +20,5 @@ init : Model
 init =
     { boardSpecs = Models.BoardSpecs.init 8 8
     , occupiedTiles = initialMoves
-    , turn = Orange
     , highlightedTile = Nothing
     }

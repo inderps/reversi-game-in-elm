@@ -7,12 +7,14 @@ import Models.OccupiedTile exposing (OccupiedTile, move)
 
 placeTile : Model -> Position -> Model
 placeTile model position =
-    updateTiles (insertTile model position)
+    model
 
 
-insertTile : Model -> Position -> Model
-insertTile model pos =
-    { model | occupiedTiles = model.occupiedTiles ++ [ move model.turn pos ] }
+
+--
+-- insertTile : Model -> Position -> Model
+-- insertTile model pos =
+--     { model | occupiedTiles = model.occupiedTiles ++ [ move model.turn pos ] }
 
 
 updateTiles : Model -> Model

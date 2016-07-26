@@ -4,12 +4,12 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Update exposing (Msg(..))
-import Models.Player exposing (Player(..))
+import Models.Disc exposing (Disc(..))
 
 
 disc : OccupiedTile -> Html Msg
 disc occupiedTile =
-    case .player occupiedTile of
+    case .disc occupiedTile of
         Orange ->
             (orangeDisc)
 
@@ -19,14 +19,14 @@ disc occupiedTile =
 
 orangeDisc : Html Msg
 orangeDisc =
-    discOfPlayer "orange"
+    discOfColor "orange"
 
 
 greenDisc : Html Msg
 greenDisc =
-    discOfPlayer "green"
+    discOfColor "green"
 
 
-discOfPlayer : String -> Html Msg
-discOfPlayer player =
-    div [ class ("tile__disc " ++ player) ] []
+discOfColor : String -> Html Msg
+discOfColor disc =
+    div [ class ("tile__disc " ++ disc) ] []

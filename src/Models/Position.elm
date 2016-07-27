@@ -1,4 +1,4 @@
-module Models.Position exposing (Position, position)
+module Models.Position exposing (Position, position, tiltedPosition)
 
 
 type alias Position =
@@ -9,6 +9,13 @@ type alias Position =
 
 position : Int -> Int -> Position
 position x y =
+    { x = x
+    , y = y
+    }
+
+
+tiltedPosition : Int -> Int -> Position
+tiltedPosition y x =
     { x = x
     , y = y
     }

@@ -5,6 +5,7 @@ import Models.Position exposing (Position)
 import Models.OccupiedTile exposing (OccupiedTile, move)
 import Helpers.Model exposing (modelAfterAddingTile)
 import Helpers.Disc exposing (nextDiscToBePlaced)
+import Updates.DiscSwapping.Horizontal exposing (modelAfterSwappingDiscsHorizontally)
 
 
 placeDisc : Model -> Position -> Model
@@ -25,13 +26,3 @@ modelAfterPlacingDisc model pos =
 modelAfterSwappingDiscs : Model -> Model
 modelAfterSwappingDiscs =
     modelAfterSwappingDiscsHorizontally
-
-
-modelAfterSwappingDiscsHorizontally : Model -> Model
-modelAfterSwappingDiscsHorizontally =
-    modelAfterSwappingDiscsOnLeft
-
-
-modelAfterSwappingDiscsOnLeft : Model -> Model
-modelAfterSwappingDiscsOnLeft model =
-    { model | occupiedTiles = model.occupiedTiles }

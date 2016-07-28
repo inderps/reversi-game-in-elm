@@ -9,6 +9,7 @@ import List exposing (map, member)
 import List.Extra exposing (find, takeWhile)
 import Helpers.List exposing (maybeListToListUntil)
 import Helpers.Disc exposing (opponentDisc)
+import Models.Disc exposing (Disc)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Models.Position exposing (Position)
 
@@ -26,19 +27,14 @@ afterSwappingDiscs tiles tile =
         tile
 
 
-tilesWithDiscsToSwap : List OccupiedTile -> Maybe OccupiedTile -> List OccupiedTile
-tilesWithDiscsToSwap tiles maybeTile =
-    case maybeTile of
-        Just tile ->
-            takeWhile (hasDifferentDiscs tile) tiles
-
-        Nothing ->
-            []
+tilesWithDiscsToSwap : Disc -> List OccupiedTile -> List OccupiedTile
+tilesWithDiscsToSwap disc tiles =
+    takeWhile (hasDifferentDiscs disc) tiles
 
 
-hasDifferentDiscs : OccupiedTile -> OccupiedTile -> Bool
-hasDifferentDiscs tile1 tile2 =
-    tile1.disc /= tile2.disc
+hasDifferentDiscs : Disc -> OccupiedTile -> Bool
+hasDifferentDiscs disc tile =
+    disc /= tile.disc
 
 
 occupiedTilesInTheseCoordinates : List OccupiedTile -> List Position -> List OccupiedTile

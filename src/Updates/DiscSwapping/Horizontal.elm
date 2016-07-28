@@ -21,35 +21,34 @@ modelAfterSwappingDiscsHorizontally =
 
 modelAfterSwappingDiscsOnLeft : Model -> Model
 modelAfterSwappingDiscsOnLeft model =
-    swappableLeftTiles model.occupiedTiles
-        |> tilesAfterSwapping model.occupiedTiles
-        |> modelAfterReplacingTiles model
+    case lastFilledTile model.occupiedTiles of
+        Just tile ->
+            swappableLeftTiles model.occupiedTiles tile
+                |> tilesAfterSwapping model.occupiedTiles
+                |> modelAfterReplacingTiles model
+
+        Nothing ->
+            model
 
 
-swappableLeftTiles : List OccupiedTile -> List OccupiedTile
-swappableLeftTiles occupiedTiles =
-    lastFilledTile occupiedTiles
-        |> tilesWithDiscsToSwap (leftTiles occupiedTiles)
+swappableLeftTiles : List OccupiedTile -> OccupiedTile -> List OccupiedTile
+swappableLeftTiles occupiedTiles tile =
+    leftTiles occupiedTiles tile.position
+        |> tilesWithDiscsToSwap tile.disc
 
 
-leftTiles : List OccupiedTile -> List OccupiedTile
-leftTiles occupiedTiles =
-    leftCoordinates occupiedTiles
+leftTiles : List OccupiedTile -> Position -> List OccupiedTile
+leftTiles occupiedTiles position =
+    leftCoordinates position
         |> occupiedTilesInTheseCoordinates occupiedTiles
 
 
-leftCoordinates : List OccupiedTile -> List Position
-leftCoordinates occupiedTiles =
-    lastFilledTile occupiedTiles
-        |> listUptoDisc 1
+leftCoordinates : Position -> List Position
+leftCoordinates position =
+    listUptoDisc 1 position
         |> reverse
 
 
-listUptoDisc : Int -> Maybe OccupiedTile -> List Position
-listUptoDisc n maybeTile =
-    case maybeTile of
-        Just tile ->
-            map (tiltedPosition tile.position.y) [n..tile.position.x - 1]
-
-        Nothing ->
-            []
+listUptoDisc : Int -> Position -> List Position
+listUptoDisc n position =
+    map (tiltedPosition position.y) [n..position.x - 1]

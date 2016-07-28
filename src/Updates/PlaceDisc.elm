@@ -15,12 +15,14 @@ placeDisc model position =
 
 modelAfterPlacingAndSwapingDiscs : Model -> Position -> Model
 modelAfterPlacingAndSwapingDiscs model position =
-    modelAfterSwappingDiscs (modelAfterPlacingDisc model position)
+    modelAfterPlacingDisc model position
+        |> modelAfterSwappingDiscs
 
 
 modelAfterPlacingDisc : Model -> Position -> Model
 modelAfterPlacingDisc model pos =
-    modelAfterAddingTile model (move (nextDiscToBePlaced model.occupiedTiles) pos)
+    move (nextDiscToBePlaced model.occupiedTiles) pos
+        |> modelAfterAddingTile model
 
 
 modelAfterSwappingDiscs : Model -> Model

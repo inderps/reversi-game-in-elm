@@ -9,7 +9,8 @@ import Models.Position exposing (Position)
 
 occupiedTilesInTheseCoordinates : List OccupiedTile -> List Position -> List OccupiedTile
 occupiedTilesInTheseCoordinates occupiedTiles coordinates =
-    maybeListToListUntil (map (ifOccupied occupiedTiles) coordinates)
+    map (ifOccupied occupiedTiles) coordinates
+        |> maybeListToListUntil
 
 
 ifOccupied : List OccupiedTile -> Position -> Maybe OccupiedTile

@@ -16,7 +16,8 @@ maybeListToListRecurse filteredList maybeList =
                 Just maybeItem ->
                     case maybeItem of
                         Just item ->
-                            maybeListToListRecurse (filteredList ++ [ item ]) (tail list)
+                            tail list
+                                |> maybeListToListRecurse (filteredList ++ [ item ])
 
                         Nothing ->
                             filteredList
@@ -40,7 +41,8 @@ firstFewContainingRecurse itemToCompare filteredList maybeExistingList =
             case head list of
                 Just item ->
                     if item == itemToCompare then
-                        firstFewContainingRecurse itemToCompare (filteredList ++ [ item ]) (tail list)
+                        tail list
+                            |> firstFewContainingRecurse itemToCompare (filteredList ++ [ item ])
                     else
                         filteredList
 

@@ -1,6 +1,5 @@
 module Helpers.Disc exposing (nextDiscToBePlaced)
 
-import List exposing (tail, reverse, head)
 import Helpers.Tile exposing (lastFilledTile)
 import Models.OccupiedTile exposing (OccupiedTile, move)
 import Models.Disc exposing (Disc(..))
@@ -33,7 +32,8 @@ orangeDiscIfNothing maybeDisc =
 
 lastPlacedDisc : List OccupiedTile -> Maybe Disc
 lastPlacedDisc occupiedTiles =
-    maybeDisc (lastFilledTile occupiedTiles)
+    lastFilledTile occupiedTiles
+        |> maybeDisc
 
 
 maybeDisc : Maybe OccupiedTile -> Maybe Disc

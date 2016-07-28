@@ -20,12 +20,15 @@ modelAfterSwappingDiscsOnLeft model =
 
 leftTiles : List OccupiedTile -> List OccupiedTile
 leftTiles occupiedTiles =
-    occupiedTilesInTheseCoordinates occupiedTiles (leftCoordinates occupiedTiles)
+    leftCoordinates occupiedTiles
+        |> occupiedTilesInTheseCoordinates occupiedTiles
 
 
 leftCoordinates : List OccupiedTile -> List Position
 leftCoordinates occupiedTiles =
-    reverse (listUptoDisc 1 (lastFilledTile occupiedTiles))
+    lastFilledTile occupiedTiles
+        |> listUptoDisc 1
+        |> reverse
 
 
 listUptoDisc : Int -> Maybe OccupiedTile -> List Position

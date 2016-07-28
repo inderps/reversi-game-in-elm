@@ -4,8 +4,14 @@ import List exposing (reverse, map)
 import Model exposing (Model)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Helpers.Tile exposing (lastFilledTile)
+import Helpers.Model exposing (modelAfterReplacingTiles)
 import Models.Position exposing (Position, tiltedPosition)
-import Updates.DiscSwapping.Helpers exposing (occupiedTilesInTheseCoordinates)
+import Updates.DiscSwapping.Helpers
+    exposing
+        ( occupiedTilesInTheseCoordinates
+        , tilesWithDiscsToSwap
+        , tilesAfterSwapping
+        )
 
 
 modelAfterSwappingDiscsHorizontally : Model -> Model
@@ -15,7 +21,15 @@ modelAfterSwappingDiscsHorizontally =
 
 modelAfterSwappingDiscsOnLeft : Model -> Model
 modelAfterSwappingDiscsOnLeft model =
-    { model | occupiedTiles = leftTiles model.occupiedTiles }
+    swappableLeftTiles model.occupiedTiles
+        |> tilesAfterSwapping model.occupiedTiles
+        |> modelAfterReplacingTiles model
+
+
+swappableLeftTiles : List OccupiedTile -> List OccupiedTile
+swappableLeftTiles occupiedTiles =
+    lastFilledTile occupiedTiles
+        |> tilesWithDiscsToSwap (leftTiles occupiedTiles)
 
 
 leftTiles : List OccupiedTile -> List OccupiedTile

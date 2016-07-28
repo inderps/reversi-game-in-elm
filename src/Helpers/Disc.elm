@@ -1,4 +1,4 @@
-module Helpers.Disc exposing (nextDiscToBePlaced)
+module Helpers.Disc exposing (nextDiscToBePlaced, opponentDisc)
 
 import Helpers.Tile exposing (lastFilledTile)
 import Models.OccupiedTile exposing (OccupiedTile, move)

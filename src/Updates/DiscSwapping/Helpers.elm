@@ -16,11 +16,11 @@ import Models.Position exposing (Position)
 
 tilesAfterSwapping : List OccupiedTile -> List OccupiedTile -> List OccupiedTile
 tilesAfterSwapping tiles swapableTiles =
-    map (afterSwappingDiscs swapableTiles) tiles
+    map (discAfterSwapping swapableTiles) tiles
 
 
-afterSwappingDiscs : List OccupiedTile -> OccupiedTile -> OccupiedTile
-afterSwappingDiscs tiles tile =
+discAfterSwapping : List OccupiedTile -> OccupiedTile -> OccupiedTile
+discAfterSwapping tiles tile =
     if member tile tiles then
         { tile | disc = opponentDisc tile.disc }
     else

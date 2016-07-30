@@ -5,7 +5,7 @@ import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onMouseOver, onMouseOut)
 import List exposing (head, filter, map)
 import Models.OccupiedTile exposing (OccupiedTile)
-import Models.Position exposing (Position, position)
+import Models.Position exposing (Position, setXY)
 import Model exposing (Model)
 import Update exposing (Msg(..))
 import Views.Disc exposing (disc)
@@ -13,7 +13,7 @@ import Views.Disc exposing (disc)
 
 tile : Model -> Int -> Int -> Html Msg
 tile model y x =
-    tileWithPosition model (position x y)
+    tileWithPosition model (setXY x y)
 
 
 tileWithPosition : Model -> Position -> Html Msg

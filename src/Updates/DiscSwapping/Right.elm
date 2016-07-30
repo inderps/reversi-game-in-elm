@@ -5,7 +5,7 @@ import Model exposing (Model)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Helpers.Tile exposing (lastFilledTile)
 import Helpers.Model exposing (modelAfterReplacingTiles)
-import Models.Position exposing (Position, tiltedPosition)
+import Models.Position exposing (Position, setYX)
 import Models.Disc exposing (Disc)
 import Updates.DiscSwapping.Helpers
     exposing
@@ -41,4 +41,4 @@ rightTiles occupiedTiles position upto =
 
 positionsInbetween : Position -> Int -> List Position
 positionsInbetween position upto =
-    map (tiltedPosition position.y) [position.x + 1..upto]
+    map (setYX position.y) [position.x + 1..upto]

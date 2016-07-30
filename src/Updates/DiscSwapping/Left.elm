@@ -5,7 +5,7 @@ import Model exposing (Model)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Helpers.Tile exposing (lastFilledTile)
 import Helpers.Model exposing (modelAfterReplacingTiles)
-import Models.Position exposing (Position, tiltedPosition)
+import Models.Position exposing (Position, setYX)
 import Models.Disc exposing (Disc)
 import Updates.DiscSwapping.Helpers
     exposing
@@ -46,4 +46,4 @@ leftCoordinates =
 
 leftSidePositions : Position -> List Position
 leftSidePositions position =
-    map (tiltedPosition position.y) [1..position.x - 1]
+    map (setYX position.y) [1..position.x - 1]

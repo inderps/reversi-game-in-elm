@@ -1,6 +1,6 @@
 module Models.OccupiedTile exposing (OccupiedTile, move)
 
-import Models.Position exposing (Position, position)
+import Models.Position exposing (Position)
 import Models.Disc exposing (Disc(..))
 
 

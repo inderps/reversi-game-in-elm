@@ -5,8 +5,8 @@ import Models.Position exposing (Position)
 import Models.OccupiedTile exposing (OccupiedTile, move)
 import Updates.Common.Model exposing (modelAfterAddingTile)
 import Computations.Disc exposing (nextDiscToBePlaced)
-import Updates.DiscSwapping.Horizontal exposing (modelAfterSwappingDiscsHorizontally)
-import Updates.DiscSwapping.Vertical exposing (modelAfterSwappingDiscsVertically)
+import Computations.DiscSwapping.Horizontal exposing (modelAfterSwappingDiscsHorizontally)
+import Computations.DiscSwapping.Vertical exposing (modelAfterSwappingDiscsVertically)
 
 
 placeDisc : Model -> Position -> Model

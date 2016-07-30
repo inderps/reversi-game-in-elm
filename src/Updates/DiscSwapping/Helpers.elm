@@ -1,17 +1,22 @@
-module Updates.DiscSwapping.Helpers
-    exposing
-        ( occupiedTilesInTheseCoordinates
-        , tilesWithDiscsToSwap
-        , tilesAfterSwapping
-        )
+module Updates.DiscSwapping.Helpers exposing (modelAfterSwappingDiscsOnPosition)
 
 import List exposing (map, member)
 import List.Extra exposing (find, takeWhile)
-import Helpers.List exposing (maybeListToListUntil)
-import Helpers.Disc exposing (opponentDisc)
+import Model exposing (Model)
 import Models.Disc exposing (Disc)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Models.Position exposing (Position)
+import Helpers.List exposing (maybeListToListUntil)
+import Helpers.Model exposing (modelAfterReplacingTiles)
+import Helpers.Disc exposing (opponentDisc)
+
+
+modelAfterSwappingDiscsOnPosition : Model -> OccupiedTile -> List Position -> Model
+modelAfterSwappingDiscsOnPosition model tile positions =
+    occupiedTilesInTheseCoordinates model.occupiedTiles positions
+        |> tilesWithDiscsToSwap tile.disc
+        |> tilesAfterSwapping model.occupiedTiles
+        |> modelAfterReplacingTiles model
 
 
 tilesAfterSwapping : List OccupiedTile -> List OccupiedTile -> List OccupiedTile

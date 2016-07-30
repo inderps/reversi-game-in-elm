@@ -1,4 +1,4 @@
-module Helpers.Model exposing (modelAfterAddingTile, modelAfterReplacingTiles)
+module Updates.Common.Model exposing (modelAfterAddingTile, modelAfterReplacingTiles)
 
 import Model exposing (Model)
 import Models.OccupiedTile exposing (OccupiedTile, move)

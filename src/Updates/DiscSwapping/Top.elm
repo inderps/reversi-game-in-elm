@@ -2,7 +2,7 @@ module Updates.DiscSwapping.Top exposing (modelAfterSwappingDiscsOnTop)
 
 import List exposing (reverse, map)
 import Model exposing (Model)
-import Helpers.Tile exposing (lastFilledTile)
+import Computations.Tile exposing (lastFilledTile)
 import Models.Position exposing (Position, setXY)
 import Updates.DiscSwapping.Helpers exposing (modelAfterSwappingDiscsOnPosition)
 

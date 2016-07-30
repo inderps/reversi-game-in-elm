@@ -6,9 +6,9 @@ import Model exposing (Model)
 import Models.Disc exposing (Disc)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Models.Position exposing (Position)
-import Helpers.List exposing (maybeListToListUntil)
-import Helpers.Model exposing (modelAfterReplacingTiles)
-import Helpers.Disc exposing (opponentDisc)
+import Extensions.List exposing (maybeListToListUntil)
+import Updates.Common.Model exposing (modelAfterReplacingTiles)
+import Computations.Disc exposing (opponentDisc)
 
 
 modelAfterSwappingDiscsOnPosition : Model -> OccupiedTile -> List Position -> Model

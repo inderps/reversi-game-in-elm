@@ -1,4 +1,4 @@
-module Helpers.List exposing (firstFewContaining, maybeListToListUntil)
+module Extensions.List exposing (firstFewContaining, maybeListToListUntil)
 
 import List exposing (head, tail)
 

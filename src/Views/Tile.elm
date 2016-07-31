@@ -4,9 +4,10 @@ import Html exposing (..)
 import Html.Attributes exposing (class)
 import Html.Events exposing (onClick, onMouseOver, onMouseOut)
 import List exposing (head, filter, map)
+import Computations.Turn exposing (canDiscBePlaced)
+import Model exposing (Model)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Models.Position exposing (Position, setXY)
-import Model exposing (Model)
 import Update exposing (Msg(..))
 import Views.Disc exposing (disc)
 
@@ -25,10 +26,8 @@ tileWithPosition model pos =
 
         Nothing ->
             button
-                [ class (maybeHighlightTile pos model.highlightedTile)
+                [ class (maybeHighlightTile model pos)
                 , onClick (PlaceDisc pos)
-                , onMouseOver (HighlightTile pos)
-                , onMouseOut (RemoveHighlightTile)
                 ]
                 []
 
@@ -43,14 +42,9 @@ isTileOccupied pos occupiedTile =
     .x occupiedTile.position == .x pos && .y occupiedTile.position == .y pos
 
 
-maybeHighlightTile : Position -> Maybe Position -> String
-maybeHighlightTile tilePos maybeHighlightedTilePos =
-    case maybeHighlightedTilePos of
-        Just highlightPos ->
-            if tilePos == highlightPos then
-                "tile highlight"
-            else
-                "tile"
-
-        Nothing ->
-            "tile"
+maybeHighlightTile : Model -> Position -> String
+maybeHighlightTile model pos =
+    if canDiscBePlaced model pos then
+        "tile highlight"
+    else
+        "tile"

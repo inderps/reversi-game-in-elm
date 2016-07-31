@@ -1,12 +1,16 @@
-module Computations.DiscSwapping.Left exposing (modelAfterSwappingDiscsOnLeft)
+module Computations.DiscSwapping.Left exposing (modelAfterSwappingDiscsOnLeft, leftSwappableDiscs)
 
 import List exposing (reverse, map)
 import Model exposing (Model)
-import Models.Disc exposing (Disc)
 import Models.Position exposing (Position, setYX)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Computations.Tile exposing (lastFilledTile)
-import Computations.DiscSwapping.OccupiedTile exposing (swappableTilesOnPosition, tilesAfterSwapping)
+import Computations.DiscSwapping.OccupiedTile
+    exposing
+        ( swappableTilesOnPositionWithDisc
+        , swappableTilesOnPositionForNextDisc
+        , tilesAfterSwapping
+        )
 import Updates.Common.Model exposing (modelAfterReplacingTiles)
 
 
@@ -15,7 +19,7 @@ modelAfterSwappingDiscsOnLeft model =
     case lastFilledTile model.occupiedTiles of
         Just tile ->
             leftCoordinates tile.position
-                |> swappableTilesOnPosition model.occupiedTiles tile.disc
+                |> swappableTilesOnPositionWithDisc model.occupiedTiles tile.disc
                 |> tilesAfterSwapping model.occupiedTiles
                 |> modelAfterReplacingTiles model
 
@@ -23,10 +27,10 @@ modelAfterSwappingDiscsOnLeft model =
             model
 
 
-leftSwappableDiscs : List OccupiedTile -> Position -> Disc -> List OccupiedTile
-leftSwappableDiscs occupiedTiles position disc =
+leftSwappableDiscs : List OccupiedTile -> Position -> List OccupiedTile
+leftSwappableDiscs occupiedTiles position =
     leftCoordinates position
-        |> swappableTilesOnPosition occupiedTiles disc
+        |> swappableTilesOnPositionForNextDisc occupiedTiles
 
 
 leftCoordinates : Position -> List Position

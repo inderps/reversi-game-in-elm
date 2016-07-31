@@ -20,5 +20,4 @@ init : Model
 init =
     { boardSpecs = Models.BoardSpecs.init 8 8
     , occupiedTiles = initialMoves
-    , highlightedTile = Nothing
     }

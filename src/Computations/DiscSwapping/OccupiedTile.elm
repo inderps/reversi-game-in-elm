@@ -1,4 +1,9 @@
-module Computations.DiscSwapping.OccupiedTile exposing (swappableTilesOnPosition, tilesAfterSwapping)
+module Computations.DiscSwapping.OccupiedTile
+    exposing
+        ( swappableTilesOnPositionWithDisc
+        , swappableTilesOnPositionForNextDisc
+        , tilesAfterSwapping
+        )
 
 import List exposing (map, member)
 import List.Extra exposing (find, takeWhile)
@@ -6,11 +11,22 @@ import Models.Position exposing (Position)
 import Models.Disc exposing (Disc)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Computations.Disc exposing (opponentDisc)
+import Computations.Tile exposing (lastFilledTile)
 import Computations.DiscSwapping.Position exposing (occupiedTilesInTheseCoordinates)
 
 
-swappableTilesOnPosition : List OccupiedTile -> Disc -> List Position -> List OccupiedTile
-swappableTilesOnPosition occupiedTiles disc positions =
+swappableTilesOnPositionForNextDisc : List OccupiedTile -> List Position -> List OccupiedTile
+swappableTilesOnPositionForNextDisc occupiedTiles positions =
+    case lastFilledTile occupiedTiles of
+        Just tile ->
+            swappableTilesOnPositionWithDisc occupiedTiles (opponentDisc tile.disc) positions
+
+        Nothing ->
+            []
+
+
+swappableTilesOnPositionWithDisc : List OccupiedTile -> Disc -> List Position -> List OccupiedTile
+swappableTilesOnPositionWithDisc occupiedTiles disc positions =
     occupiedTilesInTheseCoordinates occupiedTiles positions
         |> tilesWithDiscsToSwap disc
 

@@ -1,13 +1,17 @@
-module Computations.DiscSwapping.Right exposing (modelAfterSwappingDiscsOnRight)
+module Computations.DiscSwapping.Right exposing (modelAfterSwappingDiscsOnRight, rightSwappableDiscs)
 
 import List exposing (map)
 import Model exposing (Model)
-import Models.Disc exposing (Disc)
 import Models.Position exposing (Position, setYX)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Models.BoardSpecs exposing (BoardSpecs)
 import Computations.Tile exposing (lastFilledTile)
-import Computations.DiscSwapping.OccupiedTile exposing (swappableTilesOnPosition, tilesAfterSwapping)
+import Computations.DiscSwapping.OccupiedTile
+    exposing
+        ( swappableTilesOnPositionWithDisc
+        , swappableTilesOnPositionForNextDisc
+        , tilesAfterSwapping
+        )
 import Updates.Common.Model exposing (modelAfterReplacingTiles)
 
 
@@ -16,7 +20,7 @@ modelAfterSwappingDiscsOnRight model =
     case lastFilledTile model.occupiedTiles of
         Just tile ->
             rightCoordinates tile.position model.boardSpecs.columns
-                |> swappableTilesOnPosition model.occupiedTiles tile.disc
+                |> swappableTilesOnPositionWithDisc model.occupiedTiles tile.disc
                 |> tilesAfterSwapping model.occupiedTiles
                 |> modelAfterReplacingTiles model
 
@@ -24,10 +28,10 @@ modelAfterSwappingDiscsOnRight model =
             model
 
 
-rightSwappableDiscs : BoardSpecs -> List OccupiedTile -> Position -> Disc -> List OccupiedTile
-rightSwappableDiscs boardSpecs occupiedTiles position disc =
+rightSwappableDiscs : BoardSpecs -> List OccupiedTile -> Position -> List OccupiedTile
+rightSwappableDiscs boardSpecs occupiedTiles position =
     rightCoordinates position boardSpecs.columns
-        |> swappableTilesOnPosition occupiedTiles disc
+        |> swappableTilesOnPositionForNextDisc occupiedTiles
 
 
 rightCoordinates : Position -> Int -> List Position

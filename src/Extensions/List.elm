@@ -1,4 +1,4 @@
-module Extensions.List exposing (firstFewContaining, maybeListToListUntil)
+module Extensions.List exposing (maybeListToListUntil)
 
 import List exposing (head, tail)
 
@@ -21,30 +21,6 @@ maybeListToListRecurse filteredList maybeList =
 
                         Nothing ->
                             filteredList
-
-                Nothing ->
-                    filteredList
-
-        Nothing ->
-            filteredList
-
-
-firstFewContaining : a -> List a -> List a
-firstFewContaining item list =
-    firstFewContainingRecurse item [] (Just list)
-
-
-firstFewContainingRecurse : a -> List a -> Maybe (List a) -> List a
-firstFewContainingRecurse itemToCompare filteredList maybeExistingList =
-    case maybeExistingList of
-        Just list ->
-            case head list of
-                Just item ->
-                    if item == itemToCompare then
-                        tail list
-                            |> firstFewContainingRecurse itemToCompare (filteredList ++ [ item ])
-                    else
-                        filteredList
 
                 Nothing ->
                     filteredList

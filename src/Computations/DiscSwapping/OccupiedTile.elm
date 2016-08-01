@@ -5,7 +5,7 @@ module Computations.DiscSwapping.OccupiedTile
         , tilesAfterSwapping
         )
 
-import List exposing (map, member)
+import List exposing (map, member, length)
 import List.Extra exposing (find, takeWhile)
 import Models.Position exposing (Position)
 import Models.Disc exposing (Disc)
@@ -47,6 +47,15 @@ discAfterSwapping tiles tile =
 tilesWithDiscsToSwap : Disc -> List OccupiedTile -> List OccupiedTile
 tilesWithDiscsToSwap disc tiles =
     takeWhile (hasDifferentDiscs disc) tiles
+        |> emptyListIfAllTilesAreSwappable tiles
+
+
+emptyListIfAllTilesAreSwappable : List OccupiedTile -> List OccupiedTile -> List OccupiedTile
+emptyListIfAllTilesAreSwappable tiles1 tiles2 =
+    if (length tiles1 == length tiles2) then
+        []
+    else
+        tiles2
 
 
 hasDifferentDiscs : Disc -> OccupiedTile -> Bool

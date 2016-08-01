@@ -9,18 +9,16 @@ body {
   margin: auto;
 }
 
-.board {
+.game {
   margin: auto;
   text-align: center;
   width: 90vw;
   height: 90vw;
 }
 
-@media only screen and (min-width : 1000px) {
-  .board {
-    width: 40vw;
-    height: 40vw;
-  }
+.board {
+  width: 100%;
+  height: 100%;
 }
 
 .board__row {
@@ -60,4 +58,58 @@ body {
 
 .tile__disc.green {
   background-color: #56bc8a;
+}
+
+.scorecard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25%;
+}
+
+.scorecard h1 {
+  margin: 0;
+  color: #f2992e;
+  font-family: sans-serif;
+  font-size: 5vw;
+}
+
+.score, .controls {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.score__player, .controls_reset, .controls_next-turn {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score__player .tile__disc {
+  width: 7vw;
+  height: 7vw;
+  margin: 0;
+  margin-right: 1vw;
+}
+
+
+@media only screen and (min-width : 1000px) {
+  .game {
+    width: 35vw;
+    height: 35vw;
+  }
+
+  .score__player .tile__disc {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .scorecard h1 {
+    font-size: 2vw;
+  }
 }

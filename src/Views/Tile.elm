@@ -25,11 +25,16 @@ tileWithPosition model pos =
                 [ (disc occupiedTile) ]
 
         Nothing ->
-            button
-                [ class (maybeHighlightTile model pos)
-                , onClick (PlaceDisc pos)
-                ]
-                []
+            if canDiscBePlaced model pos then
+                button
+                    [ class "tile highlight"
+                    , onClick (PlaceDisc pos)
+                    ]
+                    []
+            else
+                button
+                    [ class "tile" ]
+                    []
 
 
 maybeOccupied : List OccupiedTile -> Position -> Maybe OccupiedTile
@@ -40,11 +45,3 @@ maybeOccupied occupiedTiles pos =
 isTileOccupied : Position -> OccupiedTile -> Bool
 isTileOccupied pos occupiedTile =
     .x occupiedTile.position == .x pos && .y occupiedTile.position == .y pos
-
-
-maybeHighlightTile : Model -> Position -> String
-maybeHighlightTile model pos =
-    if canDiscBePlaced model pos then
-        "tile highlight"
-    else
-        "tile"

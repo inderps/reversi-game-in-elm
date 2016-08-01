@@ -1,4 +1,4 @@
-module Views.Disc exposing (disc)
+module Views.Disc exposing (disc, orangeDisc, greenDisc)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)

@@ -1,8 +1,19 @@
-module Computations.Disc exposing (nextDiscToBePlaced, opponentDisc)
+module Computations.Disc exposing (nextDiscToBePlaced, opponentDisc, totalNoOfDiscs)
 
+import List exposing (filter, length)
 import Computations.Tile exposing (lastFilledTile)
 import Models.OccupiedTile exposing (OccupiedTile, move)
 import Models.Disc exposing (Disc(..))
+
+
+totalNoOfDiscs : List OccupiedTile -> Disc -> Int
+totalNoOfDiscs occupiedTiles disc =
+    length (filter (tileContainDisc disc) occupiedTiles)
+
+
+tileContainDisc : Disc -> OccupiedTile -> Bool
+tileContainDisc disc occupiedTile =
+    occupiedTile.disc == disc
 
 
 nextDiscToBePlaced : List OccupiedTile -> Disc

@@ -90,10 +90,11 @@ body {
   align-items: center;
 }
 
-.score__player .tile__disc {
+.score__player .tile__disc, .controls_next-turn .tile__disc  {
   width: 7vw;
   height: 7vw;
   margin: 0;
+  margin-left: 1vw;
   margin-right: 1vw;
 }
 
@@ -104,7 +105,7 @@ body {
     height: 35vw;
   }
 
-  .score__player .tile__disc {
+  .score__player .tile__disc, .controls_next-turn .tile__disc {
     width: 3vw;
     height: 3vw;
   }

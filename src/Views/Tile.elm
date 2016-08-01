@@ -22,7 +22,7 @@ tileWithPosition model pos =
     case maybeOccupied model.occupiedTiles pos of
         Just occupiedTile ->
             button [ class "tile" ]
-                [ (disc occupiedTile) ]
+                [ (disc occupiedTile.disc) ]
 
         Nothing ->
             if canDiscBePlaced model pos then

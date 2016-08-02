@@ -9,7 +9,6 @@ import Update exposing (Msg(..))
 import Views.Disc exposing (disc, orangeDisc, greenDisc)
 import Computations.Disc exposing (nextDiscToBePlaced, totalNoOfDiscs)
 import Computations.Turn exposing (canNextTurnBePlayed, highestPlacedDisc)
-import Computations.Board exposing (allPositions)
 
 
 scoreCard : Model -> Html Msg

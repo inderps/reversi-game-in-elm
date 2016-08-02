@@ -1,6 +1,7 @@
 module Views.ScoreCard exposing (scoreCard)
 
 import Html exposing (..)
+import Html.Events exposing (onClick)
 import Html.Attributes exposing (class)
 import Model exposing (Model)
 import Models.Disc exposing (Disc(..))
@@ -38,7 +39,7 @@ scoreCard model =
                     [ text "Next Turn: " ]
                 , (disc (nextDiscToBePlaced model.occupiedTiles))
                 ]
-            , h1 [ class "controls_reset" ]
+            , h1 [ class "controls_reset", onClick (Reset) ]
                 [ text "Reset" ]
             ]
         ]

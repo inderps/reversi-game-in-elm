@@ -98,6 +98,10 @@ body {
   margin-right: 1vw;
 }
 
+.controls_reset {
+  cursor: pointer;
+}
+
 
 @media only screen and (min-width : 1000px) {
   .game {

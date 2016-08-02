@@ -1,4 +1,4 @@
-module Init exposing (init)
+module Init exposing (init, initialMoves)
 
 import Model exposing (Model)
 import Models.BoardSpecs exposing (BoardSpecs)

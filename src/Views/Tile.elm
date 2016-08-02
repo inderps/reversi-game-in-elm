@@ -2,7 +2,7 @@ module Views.Tile exposing (tile)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
-import Html.Events exposing (onClick, onMouseOver, onMouseOut)
+import Html.Events exposing (onClick)
 import List exposing (head, filter, map)
 import Computations.Turn exposing (canDiscBePlaced)
 import Model exposing (Model)

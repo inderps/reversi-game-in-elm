@@ -1,7 +1,6 @@
 module Updates.Reset exposing (reset)
 
 import Model exposing (Model)
-import Models.OccupiedTile exposing (OccupiedTile, move)
 import Init exposing (initialMoves)
 
 

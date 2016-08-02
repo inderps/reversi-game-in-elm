@@ -1,4 +1,4 @@
-module Computations.DiscSwapping.Position exposing (occupiedTilesInTheseCoordinates)
+module Computations.DiscSwapping.Position exposing (occupiedTilesInTheseCoordinates, isSameCoordinates)
 
 import List exposing (map, member)
 import List.Extra exposing (find, takeWhile)

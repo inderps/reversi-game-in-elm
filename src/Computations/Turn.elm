@@ -4,11 +4,12 @@ import List exposing (append, isEmpty, length, filter, any)
 import Model exposing (Model)
 import Models.Position exposing (Position)
 import Models.OccupiedTile exposing (OccupiedTile)
+import Models.BoardSpecs exposing (BoardSpecs)
 import Models.Disc exposing (Disc(..))
 import Computations.Board exposing (unOccupiedPositions)
 import Computations.Disc exposing (totalNoOfDiscs)
-import Computations.DiscSwapping.Horizontal exposing (swappableDiscsHorizontally)
-import Computations.DiscSwapping.Vertical exposing (swappableDiscsVertically)
+import Computations.DiscSwapping.OccupiedTile exposing (swappableTilesOnPositionForNextDisc)
+import Computations.DiscSwapping.Coordinates exposing (coordinates)
 
 
 canNextTurnBePlayed : Model -> Bool
@@ -44,5 +45,14 @@ anySwappableDiscs model position =
 
 swappableDiscs : Model -> Position -> List OccupiedTile
 swappableDiscs model position =
-    swappableDiscsHorizontally model position
-        |> append (swappableDiscsVertically model position)
+    swappableDiscsForCoordinates coordinates model position
+
+
+swappableDiscsForCoordinates :
+    (Position -> BoardSpecs -> List (List Position))
+    -> Model
+    -> Position
+    -> List OccupiedTile
+swappableDiscsForCoordinates coordinates model position =
+    coordinates position model.boardSpecs
+        |> swappableTilesOnPositionForNextDisc model.occupiedTiles

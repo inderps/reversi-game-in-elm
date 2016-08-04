@@ -5,29 +5,29 @@ module Computations.DiscSwapping.OccupiedTile
         , tilesAfterSwapping
         )
 
-import List exposing (map, member, length)
+import List exposing (map, member, length, concat)
 import List.Extra exposing (find, takeWhile)
 import Models.Position exposing (Position)
 import Models.Disc exposing (Disc)
 import Models.OccupiedTile exposing (OccupiedTile)
 import Computations.Disc exposing (opponentDisc)
 import Computations.Tile exposing (lastFilledTile)
-import Computations.DiscSwapping.Position exposing (occupiedTilesInTheseCoordinates)
+import Computations.DiscSwapping.Position exposing (occupiedTilesInTheseCoordinatesList)
 
 
-swappableTilesOnPositionForNextDisc : List OccupiedTile -> List Position -> List OccupiedTile
-swappableTilesOnPositionForNextDisc occupiedTiles positions =
+swappableTilesOnPositionForNextDisc : List OccupiedTile -> List (List Position) -> List OccupiedTile
+swappableTilesOnPositionForNextDisc occupiedTiles positionsList =
     case lastFilledTile occupiedTiles of
         Just tile ->
-            swappableTilesOnPositionWithDisc occupiedTiles (opponentDisc tile.disc) positions
+            swappableTilesOnPositionWithDisc occupiedTiles (opponentDisc tile.disc) positionsList
 
         Nothing ->
             []
 
 
-swappableTilesOnPositionWithDisc : List OccupiedTile -> Disc -> List Position -> List OccupiedTile
-swappableTilesOnPositionWithDisc occupiedTiles disc positions =
-    occupiedTilesInTheseCoordinates occupiedTiles positions
+swappableTilesOnPositionWithDisc : List OccupiedTile -> Disc -> List (List Position) -> List OccupiedTile
+swappableTilesOnPositionWithDisc occupiedTiles disc positionsList =
+    occupiedTilesInTheseCoordinatesList occupiedTiles positionsList
         |> tilesWithDiscsToSwap disc
 
 
@@ -44,8 +44,13 @@ discAfterSwapping tiles tile =
         tile
 
 
-tilesWithDiscsToSwap : Disc -> List OccupiedTile -> List OccupiedTile
-tilesWithDiscsToSwap disc tiles =
+tilesWithDiscsToSwap : Disc -> List (List OccupiedTile) -> List OccupiedTile
+tilesWithDiscsToSwap disc tilesList =
+    concat (map (tilesWithDiscsToSwapForList disc) tilesList)
+
+
+tilesWithDiscsToSwapForList : Disc -> List OccupiedTile -> List OccupiedTile
+tilesWithDiscsToSwapForList disc tiles =
     takeWhile (hasDifferentDiscs disc) tiles
         |> emptyListIfAllTilesAreSwappable tiles
 
